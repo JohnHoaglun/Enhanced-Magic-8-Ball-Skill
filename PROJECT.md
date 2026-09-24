@@ -20,8 +20,8 @@ A conversational digital Magic 8 Ball (AI-skill build target). The user privatel
 - **Privacy:** no question text, analytics, telemetry, or identifiers; no network access
 
 ## Status
-**Version:** 0.0.0
-**Phase:** Scaffolded. Product requirements and design direction complete; implementation pending.
+**Version:** 0.0.1
+**Phase:** v0.0.1 built — skill implemented and verified (`scripts/verify.sh` all green). For global use, copy `.opencode/skills/enhanced-magic-8-ball/` to `~/.config/opencode/skills/`.
 
 ## Repository
 Source of truth: https://github.com/JohnHoaglun/Enhanced-Magic-8-Ball-Skill
