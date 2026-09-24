@@ -22,7 +22,7 @@ A task is complete only when its relevant checks have passed or a concrete block
 
 Before the first implementation delivery, create these files if absent:
 
-- `scripts/verify.sh` — canonical local verification entry point (catalog integrity + draw tests)
+- `scripts/verify.sh` — canonical local verification entry point (catalog integrity + selection tests)
 - Version bump per the versioning rules below (first build: 0.0.0 → 0.0.1)
 
 ## Skill implementation rules
@@ -33,18 +33,19 @@ Before the first implementation delivery, create these files if absent:
   matching the folder name) and `description` (third person; covers what the skill does AND
   when to trigger it; front-load the literal trigger phrases users will say). Skills without
   a description are filtered out and never surfaced.
-- Answers must be produced by a bundled deterministic helper script using true OS entropy —
-  the model must never improvise, paraphrase, or weight a saying itself. `SKILL.md` must
+- Answers must be produced by the bundled selection script using true OS entropy — the
+  model must never improvise, paraphrase, or weight a saying itself. `SKILL.md` must
   instruct the model to run the script and return its output verbatim as the entire reply.
-- Build to the AI-skill requirements in `Magic 8 Ball -- Product Spec.md`: explicit
-  conversational "ask" invocation (e.g. "ask the ball"); no question text is collected or
-  requested; plain-text answer is the accessibility baseline; an optional ball image or
-  animation only if the host supports it.
+- Build to the AI-skill requirements in `Magic 8 Ball -- Product Spec.md`: this is a
+  text-only item. Explicit conversational invocation — trigger phrases include "Magic 8
+  ball?", "What does the magic 8 ball think?", and "What does the magic 8 ball say?"; no
+  question text is collected or requested; the answer is plain text only — no images, no
+  animations.
 - Preserve the 50% affirmative / 25% noncommittal / 25% negative weighting: select the
-  outcome category by weight, then draw uniformly from that category. Never use the user's
-  question to select, weight, or generate an answer.
-- No-repeat deck within a cycle: start a fresh cycle for each conversation/invocation; do not
-  persist answer-deck state between conversations; no user-facing reset control.
+  outcome category by weight, then select uniformly within that category. Never use the
+  user's question to select, weight, or generate an answer.
+- No-repeat within a cycle: start a fresh cycle for each conversation/invocation; do not
+  persist answer state between conversations; no user-facing reset control.
 - Return only the selected saying with its original capitalization — never its category,
   theme, source pack, outcome label, analysis, or any disclaimer text.
 - Collect no question text, analytics, telemetry, usage events, or identifiers.
